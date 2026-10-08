@@ -1,0 +1,134 @@
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 1
+
+Enter Patient ID: 101
+Enter Patient Name: shivprasad ghawat
+Enter Age: 19
+Enter Disease: fever
+
+Patient added successfully!
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 1
+
+Enter Patient ID: 102
+Enter Patient Name: ritesh bhalerao
+Enter Age: 19 
+Enter Disease: cold
+
+Patient added successfully!
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 1
+
+Enter Patient ID: 103
+Enter Patient Name: chetan gaikwad
+Enter Age: 19
+Enter Disease: diabetes 
+
+Patient added successfully!
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 2
+
+========== PATIENT RECORDS ==========
+
+Patient ID : 101
+Name       : shivprasad ghawat
+Age        : 19
+Disease    : fever
+-------------------------------------
+Patient ID : 102
+Name       : ritesh bhalerao
+Age        : 19
+Disease    : cold
+-------------------------------------
+Patient ID : 103
+Name       : chetan gaikwad
+Age        : 19
+Disease    : diabetes
+-------------------------------------
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 3
+
+Enter Patient ID to search: 103
+
+Patient Found!
+Patient ID : 103
+Name       : chetan gaikwad
+Age        : 19
+Disease    : diabetes
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 4
+
+Enter Patient ID to discharge: 101
+
+Patient discharged successfully!
+
+====================================
+ HOSPITAL PATIENT MANAGEMENT SYSTEM
+====================================
+1. Add Patient
+2. Display Patients
+3. Search Patient
+4. Discharge Patient
+5. Exit
+====================================
+Enter your choice: 
+
+
+
+
+
+
