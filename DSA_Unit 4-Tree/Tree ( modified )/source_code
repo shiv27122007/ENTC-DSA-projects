@@ -1,0 +1,245 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *left, *right;
+
+    Node(int value)
+    {
+        data = value;
+        left = right = NULL;
+    }
+};
+
+Node* insert(Node* root, int value)
+{
+    if (root == NULL)
+        return new Node(value);
+
+    if (value < root->data)
+        root->left = insert(root->left, value);
+    else if (value > root->data)
+        root->right = insert(root->right, value);
+
+    return root;
+}
+
+void display(Node* root, int space = 0)
+{
+    if (root == NULL)
+        return;
+
+    space += 5;
+
+    display(root->right, space);
+
+    cout << endl;
+    for (int i = 5; i < space; i++)
+        cout << " ";
+
+    cout << root->data << endl;
+
+    display(root->left, space);
+}
+
+void inorder(Node* root)
+{
+    if (root == NULL)
+        return;
+
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+void preorder(Node* root)
+{
+    if (root == NULL)
+        return;
+
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void postorder(Node* root)
+{
+    if (root == NULL)
+        return;
+
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+
+int height(Node* root)
+{
+    if (root == NULL)
+        return -1;
+
+    return 1 + max(height(root->left), height(root->right));
+}
+
+int leafCount(Node* root)
+{
+    if (root == NULL)
+        return 0;
+
+    if (root->left == NULL && root->right == NULL)
+        return 1;
+
+    return leafCount(root->left) + leafCount(root->right);
+}
+
+bool search(Node* root, int value)
+{
+    if (root == NULL)
+        return false;
+
+    if (root->data == value)
+        return true;
+
+    if (value < root->data)
+        return search(root->left, value);
+
+    return search(root->right, value);
+}
+
+Node* minimum(Node* root)
+{
+    while (root != NULL && root->left != NULL)
+        root = root->left;
+
+    return root;
+}
+
+Node* deleteNode(Node* root, int value)
+{
+    if (root == NULL)
+        return NULL;
+
+    if (value < root->data)
+        root->left = deleteNode(root->left, value);
+
+    else if (value > root->data)
+        root->right = deleteNode(root->right, value);
+
+    else
+    {
+        if (root->left == NULL)
+        {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+
+        Node* temp = minimum(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+
+    return root;
+}
+
+int main()
+{
+    Node* root = NULL;
+
+    int elements[] = {14, 15, 4, 9, 7, 18, 3, 5};
+    int n = sizeof(elements) / sizeof(elements[0]);
+
+    cout << "BST Construction\n";
+
+    for (int i = 0; i < n; i++)
+    {
+        root = insert(root, elements[i]);
+
+        cout << "\nAfter inserting " << elements[i] << ":\n";
+        display(root);
+    }
+
+    cout << "\n\nInorder Traversal: ";
+    inorder(root);
+
+    cout << "\nPreorder Traversal: ";
+    preorder(root);
+
+    cout << "\nPostorder Traversal: ";
+    postorder(root);
+
+    cout << "\n\nHeight of BST: " << height(root);
+    cout << "\nNumber of Leaf Nodes: " << leafCount(root);
+
+    int choice, value;
+
+    do
+    {
+        cout << "\n\n--- BST MENU ---\n";
+        cout << "1. Search an element\n";
+        cout << "2. Delete an element\n";
+        cout << "3. Display BST\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                cout << "Enter value to search: ";
+                cin >> value;
+
+                if (search(root, value))
+                    cout << "Element found.\n";
+                else
+                    cout << "Element not found.\n";
+                break;
+
+            case 2:
+                cout << "Enter value to delete: ";
+                cin >> value;
+
+                if (search(root, value))
+                {
+                    root = deleteNode(root, value);
+                    cout << "Element deleted successfully.\n";
+                    cout << "Updated BST:\n";
+                    display(root);
+
+                    cout << "\nUpdated Height: " << height(root);
+                    cout << "\nUpdated Leaf Count: " << leafCount(root);
+                    cout << "\nUpdated Inorder Traversal: ";
+                    inorder(root);
+                    cout << endl;
+                }
+                else
+                {
+                    cout << "Element not found.\n";
+                }
+                break;
+
+            case 3:
+                cout << "BST:\n";
+                display(root);
+                break;
+
+            case 4:
+                cout << "Program terminated.\n";
+                break;
+
+            default:
+                cout << "Invalid choice.\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
