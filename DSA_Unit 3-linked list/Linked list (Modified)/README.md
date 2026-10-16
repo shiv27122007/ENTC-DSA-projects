@@ -27,17 +27,6 @@ Each node contains patient details and pointers to both the previous and next no
 - **Concepts:** Structures/Classes, Pointers, Dynamic Memory Allocation, Functions, and Loops
 - **Platform:** Visual Studio Code / Code::Blocks / any compatible C++ compiler
 
-## 📂 Project Structure
-```text
-Hospital-Data-Management-System/
-├── source_code/
-│   └── main.cpp
-├── documentation/
-├── flowchart/
-├── output/
-├── problem_statement/
-└── README.md
-```
 
 ## ⚙️ How It Works
 1. The user selects an operation from the menu.
