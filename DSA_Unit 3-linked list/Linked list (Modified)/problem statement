@@ -1,0 +1,19 @@
+ PROBLEM STATEMENT
+
+  Hospitals need an organized way to maintain patient information and manage the order in
+which patients wait for consultation. Manual record keeping can make it difficult to search
+for a patient's details, update or remove records, and keep track of the consultation queue.
+Therefore, a Hospital Patient Data Management System is to be developed in C++ using a
+Doubly Linked List and a Queue. The system must store each patient's unique ID, name,
+age, contact details, and reason for visiting. The Doubly Linked List should support
+inserting new patient records, displaying all stored records, searching by patient ID,
+updating details, and deleting a record when required. Each linked-list node should contain
+pointers to both the previous and next nodes, enabling traversal in either direction. A
+separate Queue should manage patients waiting for consultation. When a patient joins the
+queue, their ID or reference should be added at the rear; when the doctor is ready, the
+patient at the front should be called first and removed from the waiting queue, following the
+First In, First Out (FIFO) rule. The program should provide a clear menu for performing
+these operations and display suitable messages when a patient is not found or the queue
+is empty. The system should keep patient-record operations separate from queue
+operations so that removing someone from the waiting queue does not automatically
+delete their stored patient record. 
