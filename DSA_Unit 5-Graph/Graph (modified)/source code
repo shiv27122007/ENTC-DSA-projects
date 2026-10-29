@@ -1,0 +1,168 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+
+struct Edge {
+    int src, dest, weight;
+};
+
+bool compare(Edge a, Edge b) {
+    return a.weight < b.weight;
+}
+
+class DSU {
+    vector<int> parent, rankValue;
+
+public:
+    DSU(int n) {
+        parent.resize(n);
+        rankValue.assign(n, 0);
+
+        for (int i = 0; i < n; i++)
+            parent[i] = i;
+    }
+
+    int find(int x) {
+        if (parent[x] != x)
+            parent[x] = find(parent[x]);
+        return parent[x];
+    }
+
+    bool unite(int x, int y) {
+        x = find(x);
+        y = find(y);
+
+        if (x == y)
+            return false;
+
+        if (rankValue[x] < rankValue[y])
+            swap(x, y);
+
+        parent[y] = x;
+
+        if (rankValue[x] == rankValue[y])
+            rankValue[x]++;
+
+        return true;
+    }
+};
+
+void kruskal(int V, vector<Edge> edges) {
+    sort(edges.begin(), edges.end(), compare);
+
+    DSU dsu(V);
+    vector<Edge> mst;
+    long long totalCost = 0;
+
+    cout << "\n--- Minimum Spanning Tree ---\n";
+    cout << "Source\tDestination\tWeight\tRunning Cost\n";
+
+    for (const Edge &e : edges) {
+        if (dsu.unite(e.src, e.dest)) {
+            mst.push_back(e);
+            totalCost += e.weight;
+
+            cout << e.src << "\t"
+                 << e.dest << "\t\t"
+                 << e.weight << "\t"
+                 << totalCost << '\n';
+
+            if ((int)mst.size() == V - 1)
+                break;
+        }
+    }
+
+    if (V == 1 || (int)mst.size() == V - 1) {
+        cout << "\nSpanning tree formed successfully.\n";
+        cout << "Total installation cost: "
+             << totalCost << '\n';
+
+        if (V > 1) {
+            cout << fixed << setprecision(2);
+            cout << "Average link weight: "
+                 << (double)totalCost / (V - 1) << '\n';
+        } else {
+            cout << "Average link weight: Not applicable\n";
+        }
+    } else {
+        cout << "\nThe graph is disconnected.\n";
+        cout << "A spanning tree cannot be formed.\n";
+        cout << "Minimum spanning forest cost: "
+             << totalCost << '\n';
+    }
+}
+
+int main() {
+    int V, E;
+
+    cout << "COMMUNICATION TOWER NETWORK\n";
+    cout << "Using Kruskal's Algorithm\n\n";
+
+    cout << "Enter number of towers: ";
+    cin >> V;
+
+    cout << "Enter number of communication links: ";
+    cin >> E;
+
+    if (V <= 0 || E < 0) {
+        cout << "Invalid input.\n";
+        return 0;
+    }
+
+    vector<Edge> edges(E);
+
+    cout << "\nEnter source, destination and weight "
+         << "of each link (tower numbers 0 to "
+         << V - 1 << "):\n";
+
+    for (int i = 0; i < E; i++) {
+        cin >> edges[i].src
+            >> edges[i].dest
+            >> edges[i].weight;
+
+        if (edges[i].src < 0 || edges[i].src >= V ||
+            edges[i].dest < 0 || edges[i].dest >= V) {
+            cout << "Invalid tower number.\n";
+            return 0;
+        }
+    }
+
+    // Display the original MST
+    cout << "\nORIGINAL NETWORK";
+    kruskal(V, edges);
+
+    // Modification A: Update an edge weight
+    char choice;
+    cout << "\nDo you want to update an edge weight? (y/n): ";
+    cin >> choice;
+
+    if (choice == 'y' || choice == 'Y') {
+        int u, v, newWeight;
+        bool found = false;
+
+        cout << "Enter the source and destination of the edge: ";
+        cin >> u >> v;
+
+        for (Edge &e : edges) {
+            if ((e.src == u && e.dest == v) ||
+                (e.src == v && e.dest == u)) {
+                cout << "Enter new weight: ";
+                cin >> newWeight;
+                e.weight = newWeight;
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            cout << "\nUPDATED NETWORK";
+            kruskal(V, edges);
+        } else {
+            cout << "Edge not found. No update performed.\n";
+        }
+    }
+
+    return 0;
+}
