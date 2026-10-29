@@ -1,0 +1,3 @@
+problem statement of Graph
+
+Develop a C++ program to represent communication towers as vertices and candidate communication links as weighted edges in a graph. Apply Kruskal’s algorithm to connect all communication towers at minimum total cost by constructing a Minimum Spanning Tree (MST). Display the selected links, their weights, the total cost, and the average weight of the selected links.
