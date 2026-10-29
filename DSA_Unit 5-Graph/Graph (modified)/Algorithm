@@ -1,0 +1,20 @@
+Algorithm
+
+1. Start the program.
+2. Input the number of vertices (communication towers) and edges (communication links).
+3. Store the source vertex, destination vertex, and weight of each edge.
+4. Ask the user whether an existing edge weight needs to be updated. If yes, identify the edge, enter its new weight, and update the edge list. If the edge does not exist, display an error message.
+5. Sort all edges in ascending order of their weights.
+6. Initialize the Minimum Spanning Tree (MST) as empty, set the total cost to zero, and initialize the selected edge count to zero.
+7. Select the edge with the minimum weight from the sorted list.
+8. Check whether adding the selected edge creates a cycle.
+If a cycle is formed, discard the edge.
+Otherwise, add the edge to the MST, update the total cost and selected edge count, and display the selected edge, its weight, and the running total cost.
+9. Repeat Steps 7 and 8 until  edges are selected or all edges have been checked.
+10. Check whether the selected edge count equals .
+If yes, display the Minimum Spanning Tree and confirm that the graph is connected.
+If no, display a message stating that the graph is disconnected and a spanning tree cannot be formed.
+11. If a spanning tree exists, calculate and display the average weight of the selected edges using:
+12. If an edge weight was updated, repeat Steps 5–11 to generate the updated MST.
+13. Display the final selected edges, their weights, the running total cost, and the final total cost.
+14. Stop the program.
