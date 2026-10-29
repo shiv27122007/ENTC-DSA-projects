@@ -1,0 +1,15 @@
+Algorithm
+
+Step 1: Start the program.
+Step 2: Input the number of communication towers (vertices) and candidate links (edges).
+Step 3: Assign a weight to each link representing its installation cost or distance.
+Step 4: Sort all edges in ascending order of their weights.
+Step 5: Initialize the Minimum Spanning Tree (MST) as empty and set the total cost to zero.
+Step 6: Select the edge with the minimum weight from the sorted list.
+Step 7: Check whether adding the selected edge creates a cycle.
+If no cycle is formed, add the edge to the MST and update the total cost.
+If a cycle is formed, discard the edge.
+Step 8: Repeat Steps 6 and 7 until v-1 edges have been selected, where  is the number of towers.
+Step 9: Display the selected links and their weights.
+Step 10: Calculate and display the total cost and average weight of the selected links.
+Step 11: Stop the program.
